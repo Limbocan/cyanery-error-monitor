@@ -13,8 +13,10 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020,
     createDefaultProgram: true,
+    sourceType: 'module'
   },
   rules: {
+    'no-undef': 0,
     'no-console': level,
     'no-debugger': level,
     'no-param-reassign': 0,

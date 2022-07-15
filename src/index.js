@@ -22,6 +22,7 @@ const letIE9 = () => {
 class CSI {
   constructor(opts = {}) {
     this.inited = false;
+    this.toggleShow = () => {}
     this.checkParams(opts);
     this.init(opts);
   }
@@ -42,7 +43,7 @@ class CSI {
     try {
       this.opts = opts;
       const formObj = new Forms(opts.feID);
-      (new Panel(this)).init();
+      this.toggleShow = (new Panel(this)).init(opts);
       (new WinErr(formObj)).probe();
       (new AjaxErr(formObj)).probe();
       (new FetchErr(formObj)).probe();

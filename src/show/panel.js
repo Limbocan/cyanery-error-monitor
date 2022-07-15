@@ -5,15 +5,18 @@ function Panel(csi) {
 }
 
 Panel.prototype = {
-  init() {
+  init(opts) {
     const showPage = new ShowPage(this.csi.report.bind(this.csi));
 
+    const keyIndex = opts.key || 6
     document.addEventListener('keydown', (event) => {
       event = event || window.event;
-      if (event.ctrlKey && parseInt(event.key, 10) === 6) {
+      if (event.ctrlKey && parseInt(event.key, 10) === keyIndex) {
         showPage.toggleShow();
       }
     });
+
+    return showPage.toggleShow.bind(showPage)
   },
 };
 

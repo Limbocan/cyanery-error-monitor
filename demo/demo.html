@@ -38,6 +38,7 @@
     <div class="show">
       <div id="btn-error" class="btn">制造错误</div>
       <div id="btn-report" class="btn">发送日志</div>
+      <div id="btn-open" class="btn">打开</div>
     </div>
   </body>
   <script type="module">
@@ -51,11 +52,15 @@
     console.log('### csi ', csi);
     const btnError = document.getElementById('btn-error');
     const btnReport = document.getElementById('btn-report');
+    const btnOpen = document.getElementById('btn-open');
     btnError.addEventListener('click', () => {
       test(123);
     });
     btnReport.addEventListener('click', () => {
       csi.report();
+    });
+    btnOpen.addEventListener('click', () => {
+      csi.toggleShow()
     });
   </script>
 </html>

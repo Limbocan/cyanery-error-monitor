@@ -1,7 +1,7 @@
 {
   "name": "csijs",
-  "version": "1.0.10",
-  "description": "csijs是一个前端日志系统，它将错误信息记录于本地localStorage中。无任何依赖、无入侵性。",
+  "version": "1.0.0",
+  "description": "前端日志系统，它将错误信息记录于本地localStorage中。无任何依赖、无入侵性。",
   "main": "./dist/csijs.es.js",
   "directories": {
     "test": "test"
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:tnfe/csijs.git"
+    "url": "https://github.com/Limbocan/cyanery-error-monitor"
   },
   "author": "TNFE",
   "license": "ISC",
   "keywords": [
-    "csijs / felog / tntlog / log / frontendlog"
+    "log / frontendlog"
   ],
   "files": [
     "dist",
@@ -41,6 +41,7 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "dependencies": {
-    "excellentexport": "^3.7.0"
+    "excellentexport": "^3.7.0",
+    "localforage": "^1.10.0"
   }
 }
