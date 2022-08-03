@@ -1,8 +1,8 @@
 {
-  "name": "csijs",
+  "name": "cyanery-error-monitor",
   "version": "1.0.0",
   "description": "前端日志系统。",
-  "main": "./dist/csijs.es.js",
+  "main": "./dist/error-monitor.es.js",
   "directories": {
     "test": "test"
   },
@@ -13,6 +13,7 @@
     "lint": "eslint ./src",
     "lintfix": "eslint ./src --fix"
   },
+  "homepage": "https://github.com/Limbocan/cyanery-error-monitor",
   "repository": {
     "type": "git",
     "url": "https://github.com/Limbocan/cyanery-error-monitor"

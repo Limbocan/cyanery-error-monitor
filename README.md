@@ -14,14 +14,14 @@
 
 ### 1、npm安装
 ```shell script
-npm i csijs --save
+npm i cyanery-error-monitor --save
 or
-yarn add csijs
+yarn add cyanery-error-monitor
 ```
 
 ### 2、使用
 ```javascript
-import CSI from 'csijs';
+import CSI from 'cyanery-error-monitor';
 
 // 示例：自定义上报
 const csi = new CSI({
@@ -39,5 +39,5 @@ csi.report();
 
 ## 二、日志查看
 
-查看日志快捷键: Ctrl+6 / Ctrl+自定义key
-查看日志实例方法 csi.toggleShow()
+<p>查看日志快捷键: Ctrl+6 / Ctrl+自定义key</p>
+<p>查看日志实例方法 csi.toggleShow()</p>
