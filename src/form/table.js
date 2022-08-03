@@ -24,7 +24,7 @@
  */
 
 import { extend, getID, reset } from '../util/util';
-import { read, write, remove } from '../util/store';
+import { read, write, remove, readLines } from '../util/store';
 import { getUserAgent } from '../util/device';
 
 const MAX_LENGTH = 45;
@@ -51,7 +51,9 @@ const Line = function () {
 };
 
 
-const Table = function (feID, type) {
+const Table = function (feID, type, update) {
+  this.update = update
+
   const initInfo = {
     feid: feID,
     uid: getID(),
@@ -62,7 +64,6 @@ const Table = function (feID, type) {
   };
 
   read('info').then(val => {
-    console.log(val, '====')
     this.info = extend(new Info(), initInfo, val);
     this.line = new Line();
   })
@@ -112,6 +113,15 @@ Table.prototype = {
     this.info.max = max;
 
     write('info', this.info);
+    // 更新信息后的回调
+    if (this.update instanceof Function) {
+      const _that = this;
+      setTimeout(function () {
+        readLines().then(val => {
+          _that.update(line, val);
+        })
+      }, 100)
+    } 
   },
 };
 

@@ -43,10 +43,13 @@
     </div>
   </body>
   <script type="module">
-    import CSI from '../dist/csijs.es.js';
+    import CSI from '../dist/error-monitor.es.js';
     const csi = new CSI({
       feID: 'csijs',
       key: 6,
+      onUpdate: (line, all) => {
+        console.log(line, all)
+      },
       report: (lines) => {
         console.log('### 自定义上报', lines);
       }

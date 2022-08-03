@@ -41,7 +41,7 @@ class CSI {
     if (this.inited || letIE9()) return;
     try {
       this.opts = opts;
-      const formObj = new Forms(opts.feID);
+      const formObj = new Forms(opts.feID, opts.onUpdate);
       this.toggleShow = (new Panel(this)).init(opts);
       (new WinErr(formObj)).probe();
       (new AjaxErr(formObj)).probe();
