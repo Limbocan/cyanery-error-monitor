@@ -1,4 +1,4 @@
-// import localStorage from 'localforage'
+import localStorage from 'localforage'
 
 // 本地存储
 const write = (keyName, keyValue) => {

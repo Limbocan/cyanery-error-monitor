@@ -134,8 +134,8 @@ ShowPage.prototype.createPage = function () {
 // 添加事件侦听
 ShowPage.prototype.addEventListener = function () {
   if (this.addEvented) return;
-  const self = this;
-  console.log(self);
+  // const self = this;
+  // console.log(self);
   this.blackBg.addEventListener('click', () => {
     this.remove();
   });
@@ -144,9 +144,9 @@ ShowPage.prototype.addEventListener = function () {
     ExcellentExport.excel(this.btn1, this.table);
   });
 
-  this.btn2.addEventListener('click', () => {
+  this.btn2.addEventListener('click', async () => {
     if (this.canReport) {
-      const lines = readLines();
+      const lines = await readLines();
       if (!arrIsNull(lines) && this.csiReport) {
         this.csiReport();
       }
@@ -159,8 +159,8 @@ ShowPage.prototype.addEventListener = function () {
 };
 
 // 填充内容
-ShowPage.prototype.fillContent = function () {
-  const lines = readLines();
+ShowPage.prototype.fillContent = async function () {
+  const lines = await readLines();
 
   if (arrIsNull(lines)) {
     const info = addElement('div', {

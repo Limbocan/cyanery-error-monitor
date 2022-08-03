@@ -1,7 +1,7 @@
 {
   "name": "csijs",
   "version": "1.0.0",
-  "description": "前端日志系统，它将错误信息记录于本地localStorage中。无任何依赖、无入侵性。",
+  "description": "前端日志系统。",
   "main": "./dist/csijs.es.js",
   "directories": {
     "test": "test"

@@ -28,7 +28,6 @@ class CSI {
   }
 
   checkParams(opts) {
-    console.log(opts);
     if (!opts.feID) {
       throw Error('feID必传');
     }
@@ -63,9 +62,9 @@ class CSI {
   }
 
   // 数据上报
-  report() {
+  async report() {
     if (letIE9()) return;
-    const lines = readLines();
+    const lines = await readLines();
     if (arrIsNull(lines)) return;
     this.opts.report(lines);
   }

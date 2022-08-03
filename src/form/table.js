@@ -61,13 +61,14 @@ const Table = function (feID, type) {
     length: 0,
   };
 
-  // read('info').then(val => {
-  //   this.info = extend(new Info(), initInfo, val);
-  //   this.line = new Line();
-  // })
+  read('info').then(val => {
+    console.log(val, '====')
+    this.info = extend(new Info(), initInfo, val);
+    this.line = new Line();
+  })
 
-  this.info = extend(new Info(), initInfo, read('info'));
-  this.line = new Line();
+  // this.info = extend(new Info(), initInfo, read('info'));
+  // this.line = new Line();
 };
 
 Table.prototype = {

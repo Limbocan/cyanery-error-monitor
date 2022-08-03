@@ -36,7 +36,8 @@
   <body>
     <h3 class="title">csijs前端日志系统，测试网页地址</h3>
     <div class="show">
-      <div id="btn-error" class="btn">制造错误</div>
+      <div id="btn-error1" class="btn">制造错误1</div>
+      <div id="btn-error2" class="btn">制造错误2</div>
       <div id="btn-report" class="btn">发送日志</div>
       <div id="btn-open" class="btn">打开</div>
     </div>
@@ -45,16 +46,20 @@
     import CSI from '../dist/csijs.es.js';
     const csi = new CSI({
       feID: 'csijs',
+      key: 6,
       report: (lines) => {
         console.log('### 自定义上报', lines);
       }
     });
-    console.log('### csi ', csi);
-    const btnError = document.getElementById('btn-error');
+    const btnError1 = document.getElementById('btn-error1');
+    const btnError2 = document.getElementById('btn-error2');
     const btnReport = document.getElementById('btn-report');
     const btnOpen = document.getElementById('btn-open');
-    btnError.addEventListener('click', () => {
-      test(123);
+    btnError1.addEventListener('click', () => {
+      test('error');
+    });
+    btnError2.addEventListener('click', () => {
+      info.name.test = 1
     });
     btnReport.addEventListener('click', () => {
       csi.report();

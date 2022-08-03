@@ -1,7 +1,7 @@
 import { obj2Str, str2Obj } from './util';
 import { read as storageRead, remove as storageRemove, write as storageWrite } from './storage';
 
-const MAX_LENGTH = 60;
+const MAX_LENGTH = 100;
 
 const preName = 'csijs_';
 
@@ -18,8 +18,8 @@ const write = (keyName, keyValue, pure) => {
   storageWrite(prefix(keyName), keyValue);
 };
 
-const read = (keyName, pure) => {
-  const val = storageRead(prefix(keyName));
+const read = async (keyName, pure) => {
+  const val = await storageRead(prefix(keyName));
   if (val) {
     if (pure) return val;
     return str2Obj(val);
@@ -49,8 +49,8 @@ const limit = (keyValue) => {
   return keyValue;
 };
 
-const readLines = () => {
-  const info = read('info');
+const readLines = async () => {
+  const info = await read('info');
   const lines = [];
   const length = info ? info.length : 0;
   if (info && length) {
@@ -58,7 +58,7 @@ const readLines = () => {
     const min = parseInt(info.min, 10);
     for (let i = min; i <= max; i++) {
       const keyName = `${info.type}_${i}`;
-      const line = read(keyName);
+      const line = await read(keyName);
       lines.push(line);
     }
   }
