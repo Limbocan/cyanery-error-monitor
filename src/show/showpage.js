@@ -1,6 +1,5 @@
-import { readLines } from '../util/store';
+import { readLines, clear } from '../util/store';
 import { arrIsNull, formatTime } from '../util/util';
-import ExcellentExport from 'excellentexport';
 
 function createBtn(text) {
   const btn = document.createElement('a');
@@ -26,21 +25,28 @@ function addTD(html) {
   return td;
 }
 
-function addElement(tag, style) {
+function addElement(tag, style, attrs = []) {
   const ele = document.createElement(tag);
   for (const key in style) {
     ele.style[key] = style[key];
   }
+  // 添加额外dom属性
+  attrs.forEach(attr => addAttr(ele, attr.name, attr.value))
   return ele;
 }
 
-function ShowPage(report) {
+function addAttr(ele, attr, val) {
+  ele.setAttribute(attr, val)
+}
+
+function ShowPage(report, opts) {
   this.page = null;
   this.blackBg = null;
   this.table = null;
   this.appended = false;
   this.canReport = true;
   this.csiReport = report;
+  this.option = opts
 }
 
 // 创建页面
@@ -97,22 +103,27 @@ ShowPage.prototype.createPage = function () {
     color: '#333333',
     width: '100%',
     borderCollapse: 'collapse',
-  });
+  }, [
+    { name: 'id', value: 'cyanery-error-table' }
+  ]);
 
   this.btnCon = this.btnCon || addElement('div', {
     margin: '20px auto',
     width: '400px',
-    display: 'block',
+    display: 'flex',
+    'flex-direction': 'row',
+    'justify-content': 'space-between',
     overflow: 'hidden',
   });
 
   if (!this.btn1) {
     this.btn1 = createBtn('下载');
-    this.btn1.style.float = 'left';
   }
   if (!this.btn2) {
     this.btn2 = createBtn('上报');
-    this.btn2.style.float = 'right';
+  }
+  if (this.option.showClear !== false && !this.btn3) {
+    this.btn3 = createBtn('清空');
   }
 
   this.page.append(this.blackBg);
@@ -125,6 +136,7 @@ ShowPage.prototype.createPage = function () {
   this.container.append(this.btnCon);
   this.btnCon.append(this.btn1);
   this.btnCon.append(this.btn2);
+  this.btn3 && this.btnCon.append(this.btn3);
 
   setTimeout(() => {
     this.addEventListener();
@@ -134,14 +146,21 @@ ShowPage.prototype.createPage = function () {
 // 添加事件侦听
 ShowPage.prototype.addEventListener = function () {
   if (this.addEvented) return;
-  // const self = this;
-  // console.log(self);
   this.blackBg.addEventListener('click', () => {
     this.remove();
   });
 
-  this.btn1.addEventListener('click', () => {
-    ExcellentExport.excel(this.btn1, this.table);
+  this.btn1.addEventListener('click', (e) => {
+    // ExcellentExport.excel(this.btn1, this.table);
+    // 获得表格数据的html标签和文本d;
+    var html = "<html><head><meta charset='UTF-8'></head><body>" + document.getElementById('cyanery-error-table').outerHTML + "</body></html>";
+    // 创建一个Blob对象，第一个参数是文件的数据，第二个参数是文件类型属性对象
+    var blob = new Blob([html], { type: "application/vnd.ms-excel" });
+    var a = e.target;
+    // 利用URL的createObjectURL方法为元素a生成blobURL
+    a.href = URL.createObjectURL(blob);
+    // 设置文件名
+    a.download = '错误信息表-' + new Date().toLocaleDateString();
   });
 
   this.btn2.addEventListener('click', async () => {
@@ -154,6 +173,10 @@ ShowPage.prototype.addEventListener = function () {
       alert('对不起该功能现在没有支持！');
     }
   });
+
+  this.btn3 && this.btn3.addEventListener('click', () => {
+    clear().then(() => this.toggleShow())
+  })
 
   this.addEvented = true;
 };

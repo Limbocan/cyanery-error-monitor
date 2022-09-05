@@ -18,8 +18,11 @@ const remove = (keyName) => {
   } catch (e) {}
 };
 
+const clear = () => localStorage.clear()
+
 export {
   write,
   read,
   remove,
+  clear,
 };

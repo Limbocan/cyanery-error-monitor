@@ -27,6 +27,7 @@ import CSI from 'cyanery-error-monitor';
 const csi = new CSI({
     feID: '', // 项目id，日志区分项目使用
     key: 6, // 日志查看快捷键
+    showClear: true, // 展示清空数据按钮（true/false）
     report: (lines) => {
         // todo 自定义你的上报逻辑
         console.log('error lins', lines);
@@ -35,7 +36,7 @@ const csi = new CSI({
       // 新增错误信息时的回调函数
       // line(当前新增的错误信息)
       // lines(当前所有错误列表)
-    }
+    },
 });
 
 // 如果你想主动上报

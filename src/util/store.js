@@ -1,5 +1,10 @@
 import { obj2Str, str2Obj } from './util';
-import { read as storageRead, remove as storageRemove, write as storageWrite } from './storage';
+import {
+  read as storageRead,
+  remove as storageRemove,
+  write as storageWrite,
+  clear as storageClear,
+} from './storage';
 
 const MAX_LENGTH = 100;
 
@@ -65,10 +70,16 @@ const readLines = async () => {
   return lines;
 };
 
+const clear = async () => {
+  const result = await storageClear()
+  return result
+}
+
 export {
   write,
   read,
   remove,
   limit,
   readLines,
+  clear,
 };

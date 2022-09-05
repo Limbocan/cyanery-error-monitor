@@ -6,7 +6,7 @@ function Panel(csi) {
 
 Panel.prototype = {
   init(opts) {
-    const showPage = new ShowPage(this.csi.report.bind(this.csi));
+    const showPage = new ShowPage(this.csi.report.bind(this.csi), opts);
 
     const keyIndex = opts.key || 6
     document.addEventListener('keydown', (event) => {
